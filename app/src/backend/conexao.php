@@ -94,7 +94,7 @@ $conexao->query("CREATE TABLE IF NOT EXISTS ProdutoXTamanho(
 
 //_Todo elemento que possui AUTO_INCREMENT deve possuir, consequentemente, PRIMARY KEY
 $conexao->query("CREATE TABLE IF NOT EXISTS Feedback(
-    idFeedback real AUTO_INCREMENT PRIMARY KEY,
+    idFeedback INT AUTO_INCREMENT PRIMARY KEY,
     nota INT NOT NULL,
     descricaoFeedback TEXT,
     idUsuario INT,

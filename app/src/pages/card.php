@@ -22,10 +22,10 @@ while ($user_data = mysqli_fetch_assoc($result)) {
 
     switch (trim($genero)) {
         case "M":
-            $genero = "Masculino";
+            $genero = "Masculino(a)";
             break;
         case "F":
-            $genero = "Feminino";
+            $genero = "Feminino(a)";
             break;
         case "U":
             $genero = "Unissex";

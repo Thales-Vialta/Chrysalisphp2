@@ -43,10 +43,10 @@
     }
     switch (trim($genero)) {
         case "M":
-            $genero = "Masculino";
+            $genero = "Masculino(a)";
             break;
         case "F":
-            $genero = "Feminino";
+            $genero = "Feminino(a)";
             break;
         case "U":
             $genero = "Unissex";
@@ -84,9 +84,6 @@
                         &nbsp; <?php echo $numeroAvaliacoes; ?> Avaliações <!-- Exibe o número de avaliações recuperado do banco de dados -->
                     </span>
                     <p class="text-4xl font-bold mt-4 text-start md:text-left">R$ <?php echo number_format($valorProduto, 2, ',', '.'); ?></p> <!-- Preço do produto formatado para o formato brasileiro -->
-
-                    <p class="mt-6 text-start md:text-left"><?php echo $descricao . ' ' . $grupo . ' ' . $subgrupo . ' ' . $genero; ?></p> <!-- Descrição adicional do produto -->
-
                     <!-- Botão para adicionar ao carrinho -->
                     <div class="mt-6">
                         <button class="w-full py-4 bg-orange-500 text-white font-bold rounded-lg hover:bg-orange-500 transition-all duration-300">Adicionar ao Carrinho</button>

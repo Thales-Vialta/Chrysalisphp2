@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="../../src/styles/butterfly.css">
     <link rel="icon" type="image/x-icon" href="../../public/assets/images/White_Butterfly.png">
     <title>Chrysalis - Sua Loja Preferida</title>
+
 </head>
 
 <body>
@@ -34,59 +35,60 @@
 
                     if ($result->num_rows == 1) {
                         $row = $result->fetch_assoc();
-            ?>
+                        ?>
                         <form action="update.php?idProduto=<?php echo $idProduto; ?>" method="post" enctype="multipart/form-data">
                             <div class="mb-4">
-                                <div class="mb-4">
-                                    <label for="preco">Preço</label>
-                                    <input type="text" name="preco" id="preco"
-                                        class="block appearance-none w-full py-1 px-2 mb-1 text-base leading-normal bg-white text-gray-800 border border-gray-200 rounded"
-                                        value="<?php echo htmlspecialchars($row['valorProduto']); ?>" required>
-                                </div>
-                                <div class="mb-6">
-                                    <label for="nome">Nome</label>
-                                    <input type="text" name="nome" id="nome"
-                                        class="block appearance-none w-full py-1 px-2 mb-1 text-base leading-normal bg-white text-gray-800 border border-gray-200 rounded"
-                                        value="<?php echo htmlspecialchars($row['descricao']); ?>" required>
-                                </div>
                                 <div class="mb-6">
                                     <label for="grupo">Grupo</label>
-                                    <input type="text" name="grupo" id="grupo"
-                                        class="block appearance-none w-full py-1 px-2 mb-1 text-base leading-normal bg-white text-gray-800 border border-gray-200 rounded"
+                                    <input type="text" name="grupo" id="grupo" placeholder="ex: Calça..."
+                                        class="border transition-all focus:scale-105 border-gray-300 text-gray-900 text-md rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full px-2 py-1.5 hover:bg-white"
                                         value="<?php echo htmlspecialchars($row['grupo']); ?>" required>
                                 </div>
                                 <div class="mb-6">
                                     <label for="subgrupo">Subgrupo</label>
-                                    <input type="text" name="subgrupo" id="subgrupo"
-                                        class="block appearance-none w-full py-1 px-2 mb-1 text-base leading-normal bg-white text-gray-800 border border-gray-200 rounded"
+                                    <input type="subgrupo" name="subgrupo" id="subgrupo" placeholder="ex: Jeans..."
+                                        class="border transition-all focus:scale-105 border-gray-300 text-gray-900 text-md rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full px-2 py-1.5 hover:bg-white"
                                         value="<?php echo htmlspecialchars($row['subGrupo']); ?>" required>
+                                </div>
+                                <div class="mb-4">
+                                    <label for="preco">Preço</label>
+                                    <input type="text" name="preco" id="preco" placeholder="ex: 197.90"
+                                        class="border transition-all focus:scale-105 border-gray-300 text-gray-900 text-md rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full px-2 py-1.5 hover:bg-white"
+                                        value="<?php echo htmlspecialchars($row['valorProduto']); ?>" required>
+                                </div>
+                                <div class="mb-6">
+                                    <label for="nome">Cor e detalhes</label>
+                                    <input type="text" name="nome" id="nome" placeholder="Azul, reta..."
+                                        class="border transition-all focus:scale-105 border-gray-300 text-gray-900 text-md rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full px-2 py-1.5 hover:bg-white"
+                                        value="<?php echo htmlspecialchars($row['descricao']); ?>" required>
                                 </div>
                                 <div class="mb-6">
                                 <label for="genero">Gênero</label>
-                                 <select id="genero" name="genero" class="border transition-all focus:scale-105 border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full p-2.5 hover:bg-white" required>
+                                 <select id="genero" name="genero" class="border transition-all focus:scale-105 border-gray-300 text-gray-900 text-md rounded-lg focus:ring-orange-500 focus:border-orange-500 block w-full px-2 py-1.5 hover:bg-white" required>
                                      <option disabled selected>Escolha o Gênero</option>
-                                     <option value="M">Masculino</option>
-        '                            <option value="F">Feminino</option>
+                                     <option value="M">Masculino(a)</option>
+        '                            <option value="F">Feminino(a)</option>
                                      <option value="U">Unissex</option>
                                   </select>   
                                 </div>
                                 <!-- Imagem -->
                                 <div class="mb-6">
-                                    <label for="imagem">Alterar Imagem</label>
-                                    <!-- Campo para upload de nova imagem -->
-                                    <input type="file" name="imagem" id="imagem"
-                                        class="block appearance-none w-full py-1 px-2 mb-1 text-base leading-normal bg-white text-gray-800 border border-gray-200 rounded"
-                                        accept="image/*"> <!-- permite selecionar apenas arquivos de imagem -->
-                                    <label for="imagem">Imagem Atual</label><!-- Exibe a imagem atual -->
+                                    <!-- Botão Escondido apenas para Funcionalidade -->
                                     <div class="mb-4">
-                                        <img src="data:image/jpeg;base64,<?php echo base64_encode($row['imagem']); ?>" alt="Imagem do produto" class="w-32 h-32 object-cover">
+                                        <input type="file" name="imagem" class="hidden" id="imagem" accept="image/*"
+                                            onchange="mostrarNomeArquivo()">
+                                        <label for="imagem"
+                                            class="cursor-pointer border transition-colors border-gray-300 inline-block bg-transparent text-gray-800 hover:text-white hover:bg-orange-500 py-2 px-4 rounded-lg transition-all">
+                                            Editar Imagem
+                                        </label>
+                                        <span id="file-name" class="ml-4 text-gray-700">Nenhum arquivo selecionado</span>
                                     </div>
                                 </div>
                                 <button type="submit"
                                     class="transition px-8 py-2 text-md font-medium text-white bg-orange-500 hover:bg-orange-600 rounded-lg text-center">Atualizar</button>
                         </form>
-        </div>
-<?php
+                    </div>
+                    <?php
                     } else {
                         echo "Registro não encontrado.";
                     }
@@ -97,7 +99,6 @@
                 }
             }
 
-            // Processo de update
             if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_GET['idProduto'])) {
                 $id = $_GET['idProduto'];
                 $precoNovo = $_POST['preco'];
@@ -105,31 +106,53 @@
                 $grupoNovo = $_POST['grupo'];
                 $subgrupoNovo = $_POST['subgrupo'];
                 $generoNovo = $_POST['genero'];
-
-                // Se uma nova imagem for enviada, processa o upload
-                if (isset($_FILES['imagem']) && $_FILES['imagem']['error'] === UPLOAD_ERR_OK) {
-                    $imagemNovo = file_get_contents($_FILES['imagem']['tmp_name']); // Lê o conteúdo do arquivo
-                    $sqlUpdate = "UPDATE Produto SET valorProduto = ?, descricao = ?, grupo = ?, subGrupo = ?, genero = ?, imagem = ? WHERE idProduto = ?";
-                    $stmt = $conexao->prepare($sqlUpdate);
+            
+                // Verifique se uma imagem foi enviada
+                if (isset($_FILES['imagem']) && $_FILES['imagem']['error'] == 0) {
+                    // Lê o conteúdo do arquivo da imagem
+                    $imagemNovo = file_get_contents($_FILES['imagem']['tmp_name']);
+                } else {
+                    // Se nenhuma imagem foi enviada, mantenha a imagem antiga
+                    $sqlSelectImagem = "SELECT imagem FROM Produto WHERE idProduto = ?";
+                    $stmtImagem = $conexao->prepare($sqlSelectImagem);
+                    $stmtImagem->bind_param("i", $id);
+                    $stmtImagem->execute();
+                    $resultImagem = $stmtImagem->get_result();
+                    $rowImagem = $resultImagem->fetch_assoc();
+                    $imagemNovo = $rowImagem['imagem'];
+                    $stmtImagem->close();
+                }
+            
+                // Atualize a query SQL para usar parâmetros binários para a imagem
+                $sqlUpdate = "UPDATE Produto SET valorProduto = ?, descricao = ?, grupo = ?, subgrupo = ?, genero = ?, imagem = ? WHERE idProduto = ?";
+            
+                $stmt = $conexao->prepare($sqlUpdate);
+            
+                if ($stmt) {
                     $stmt->bind_param("ssssssi", $precoNovo, $nomeNovo, $grupoNovo, $subgrupoNovo, $generoNovo, $imagemNovo, $id);
+            
+                    if ($stmt->execute()) {
+                        echo "<script>
+                                alert('Dados alterados com sucesso!');
+                                window.location.replace('read.php');
+                              </script>";
+                    } else {
+                        die("ERRO NO UPDATE: " . $stmt->error);
+                    }
                 } else {
-                    // Se não houver upload de imagem, atualiza sem modificar a imagem
-                    $sqlUpdate = "UPDATE Produto SET valorProduto = ?, descricao = ?, grupo = ?, subGrupo = ?, genero = ? WHERE idProduto = ?";
-                    $stmt = $conexao->prepare($sqlUpdate);
-                    $stmt->bind_param("sssssi", $precoNovo, $nomeNovo, $grupoNovo, $subgrupoNovo, $generoNovo, $id);
+                    die("Erro na preparação da query: " . $conexao->error);
                 }
-
-                if ($stmt->execute()) {
-                    echo "<script>alert('Dados alterados com sucesso!');
-                    window.location.replace('read.php');
-                    </script>";
-                } else {
-                    die("ERRO NO UPDATE: " . $stmt->error);
-                }
-                $stmt->close();
             }
-?>
+            
+            ?>
     </main>
+    <script>
+        function mostrarNomeArquivo() {
+            var input = document.getElementById('imagem');
+            var nomeArquivo = input.files.length > 0 ? input.files[0].name : 'Nenhum arquivo selecionado';
+            document.getElementById('file-name').textContent = nomeArquivo;
+        }
+    </script>
     <?php
     include('../../src/pages/footer.php');
     ?>
